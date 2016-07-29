@@ -4,7 +4,8 @@ Feature: Login
   I have to be able to login
 
   Background:
-    Given the following users exist
+    Given I am on the login page
+    And the following users exist
       | name    | email              | password |
       | visitor | visitor@email.com  | password |
 
@@ -13,34 +14,19 @@ Feature: Login
     And I click "Login"
     Then I should be on the login page
 
-  Scenario: Log in a user
+  Scenario Outline:
     Given I am on the login page
-    And I fill in "Email" with "visitor@email.com"
-    And I fill in "Password" with "password"
-    And I click button "Log in"
+    And I fill in <email>
+    And I fill in <password>
+    And I click button "Login"
+    And I should see "Signed in successfully."
     Then I should be on the home page
+  Examples:
+    | email     | visitor@email.com |
+    | password  | password          |
+
+  Scenario: Log in a user
     And I should see "Signed in successfully."
 
-  Scenario: Log in with wrong email
-    Given I am on the login page
-    And I fill in "Email" with "wrong@mail.com"
-    And I fill in "Password" with "password"
-    And I click button "Log in"
-    Then I should be on the login page
-    And I should see "Invalid email or password."
-
-  Scenario: Log in with wrong password
-    Given I am on the login page
-    And I fill in "Email" with "visitor@email.com"
-    And I fill in "Password" with "wrongpassword"
-    And I click button "Log in"
-    Then I should be on the login page
-    And I should see "Invalid email or password."
-
-  Scenario: Log in with no account
-    Given I am on the login page
-    And I fill in "Email" with ""
-    And I fill in "Password" with ""
-    And I click button "Log in"
-    Then I should be on the login page
-    And I should see "Invalid email or password."
+  Scenario: Log in with wrong email or password or left blank
+    And I should see "Invalid <email> or password."
