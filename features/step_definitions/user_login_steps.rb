@@ -42,14 +42,10 @@ Given(/^I am on the "([^"]*)"$/) do |login|
   expect(page.current_path).to eq '/users/sign_in'
 end
 
-# Given(/^I login as a user$/) do
-#
-# end
-
-# Given(/^I login as a user$/) do |user|
-#   user = User.find_by(name: name)
-#   login_as(user, scope: :user)
-# end
+Given(/^I login as "([^"]*)"$/) do |user|
+  user = User.find_by(name: name)
+  login_as(user, scope: :user)
+end
 
 Then(/^I should be on the home page$/) do
   visit root_path

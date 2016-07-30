@@ -16,7 +16,7 @@ Feature: Login
 
   Scenario Outline: User login
     Given I am on the "login page"
-    And I login as a user
+    And I login as "Lara"
     And I fill in <email>
     And I fill in <password>
     And I click button "Login"
