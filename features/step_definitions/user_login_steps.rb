@@ -34,10 +34,14 @@ Given(/^I click button "([^"]*)"$/) do |button|
   click_link_or_button button
 end
 
+Given(/^I login as a user$/) do
+  #not sure what to put here
+end
+
 Then(/^I should be on the home page$/) do
   visit root_path
 end
 
-Given(/^I should see "([^"]*)"$/) do |content|
-  # page.should have_content('Signed in successfully.')
+Then(/^I should see "([^"]*)"$/) do |content|
+  page.should have_content('')
 end

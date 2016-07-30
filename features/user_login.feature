@@ -16,17 +16,15 @@ Feature: Login
 
   Scenario Outline:
     Given I am on the login page
+    And I login as a user
     And I fill in <email>
     And I fill in <password>
     And I click button "Login"
-    And I should see "Signed in successfully."
     Then I should be on the home page
+    And I should see "Signed in successfully."
   Examples:
     | email     | visitor@email.com |
     | password  | password          |
 
-  Scenario: Log in a user
-    And I should see "Signed in successfully."
-
-  Scenario: Log in with wrong email or password or left blank
+  Scenario: Log in with wrong email or password or left blank or no account
     And I should see "Invalid <email> or password."
