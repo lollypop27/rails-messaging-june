@@ -52,5 +52,5 @@ Then(/^I should be on the home page$/) do
 end
 
 Then(/^I should see "([^"]*)"$/) do |content|
-    expect(page).to have_content
+    expect(page).to have_content content
 end
